@@ -21,6 +21,7 @@ const createWindow = () => {
     show: false,
     frame: false,
     transparent: true,
+    fullscreenable: false,
     resizable: false,
     fullscreenable: false,
     webPreferences: {
@@ -71,7 +72,7 @@ const handleClose = () =>
       initGame();
       splashWindow.close();
     }
-  }, 2000);
+  }, 5000);
 
 const initSplash = createWindow;
 

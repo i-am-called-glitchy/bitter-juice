@@ -46,12 +46,29 @@
         border: 0.25rem solid rgb(255, 255, 255, 0.25);
         border-radius: 1.5rem;
         box-sizing: border-box;
+        z-index: 2;
+      }
+
+      .status,
+      .ver {
+        z-index: 2;
+      }
+
+      video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 600px;
+        height: 300px;
+        object-fit: cover;
+        z-index: 1;
       }
     </style>
   </head>
 
   <body>
     <div class="splash">
+      <video autoplay src="../rick.mp4"></video>
       <div class="status"></div>
       <div class="ver"></div>
     </div>

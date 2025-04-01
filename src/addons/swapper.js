@@ -41,7 +41,6 @@ const initResourceSwapper = () => {
   };
 
   const proxyUrls = [
-    "cloudyfrogs.com",
     "snipers.io",
     "ask101math.com",
     "fpsiogame.com",
