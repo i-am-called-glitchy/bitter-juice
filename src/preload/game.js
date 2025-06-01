@@ -549,6 +549,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       "https://raw.githubusercontent.com/SheriffCarry/KirkaSkins/main/maps/full_mapimages.json"
     ).then((res) => res.json());
 
+    Object.keys(mapImages).forEach((item) => {
+      if (!mapImages[item].includes("https")) {
+        mapImages[item] =
+          "https://raw.githubusercontent.com/SheriffCarry/KirkaSkins/main" +
+          mapImages[item];
+      }
+    });
+
     const replaceMapImages = () => {
       const servers = document.querySelectorAll(".server");
       servers.forEach((server) => {
