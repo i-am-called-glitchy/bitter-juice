@@ -19,7 +19,12 @@ if (!window.location.href.startsWith(base_url)) {
   scripts.forEach((script) => {
     if (!script.endsWith(".js")) return;
     const scriptPath = path.join(scriptsPath, script);
-    require(scriptPath);
+    try {
+      require(scriptPath);
+    }
+    catch (error) {
+      console.error(`Error loading script ${script}:`, error);
+    }
   });
 }
 
@@ -639,28 +644,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           );
         });
 
-        const kloElem = content.querySelector(".card.k-d");
-        const kloStat = kloElem.querySelector(".stat-value");
-        kloStat.innerText = kloStat.innerText.replace(
-          kloStat.innerText,
-          parseInt(kloStat.innerText).toLocaleString()
-        );
-
-        const kloClone = kloElem.cloneNode(true);
-        kloClone.querySelector(".v-popover").remove();
-        kloClone.querySelector(".stat-name").innerText = "K/D";
-        kloClone.querySelector(".stat-value").innerText = (
-          parseFloat(kills) / parseFloat(deaths)
-        ).toFixed(2);
-        const contentTop = content.querySelector(".top-medium > .top");
-
-        contentTop.insertBefore(kloClone, contentTop.children[1]);
-
         content
           .querySelectorAll(".top-medium > .top > .card")
           .forEach((card) => {
             if (card.classList.contains("progress")) return;
             card.style.width = "unset";
+            if (card.classList.contains("k-d")) {
+              card.querySelector(".stat-value-kd").innerText = (
+                parseFloat(kills) / parseFloat(deaths)
+              ).toFixed(2)
+            }
           });
 
         const shortId = content
