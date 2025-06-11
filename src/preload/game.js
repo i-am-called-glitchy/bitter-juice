@@ -28,7 +28,21 @@ if (!window.location.href.startsWith(base_url)) {
   });
 }
 
+const originalConsole = {
+  log: console.log.bind(console),
+  warn: console.warn.bind(console),
+  error: console.error.bind(console),
+  info: console.info.bind(console),
+  trace: console.trace.bind(console),
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
+  console.log = originalConsole.log;
+  console.warn = originalConsole.warn;
+  console.error = originalConsole.error;
+  console.info = originalConsole.info;
+  console.trace = originalConsole.trace;
+  
   const menu = new Menu();
   menu.init();
 
@@ -1174,6 +1188,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   ipcRenderer.on("notification", (_, data) => customNotification(data));
 
   ipcRenderer.on("url-change", (_, url) => {
+    console.log = originalConsole.log;
+    console.warn = originalConsole.warn;
+    console.error = originalConsole.error;
+    console.info = originalConsole.info;
+    console.trace = originalConsole.trace;
     if (url === `${base_url}`) {
       handleLobby();
       handleInGame();
