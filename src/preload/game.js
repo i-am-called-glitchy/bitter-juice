@@ -491,76 +491,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (detail.setting === "customizations")
         detail.value ? applyCustomizations() : removeCustomizations();
     });
-
-    const formatMoney = (money) => {
-      if (!money.dataset.formatted) {
-        const formatted = parseInt(money.innerText).toLocaleString();
-        money.innerHTML = money.innerHTML.replace(money.innerText, formatted);
-        money.dataset.formatted = true;
-      }
-    };
-
-    const formatExpValues = (expValues) => {
-      if (!expValues.dataset.formatted) {
-        const [current, max] = expValues.innerText.split("/");
-        expValues.innerText = `${parseInt(current).toLocaleString()}/${parseInt(
-          max
-        ).toLocaleString()}`;
-        expValues.dataset.formatted = true;
-      }
-    };
-
-    const formatQuests = () => {
-      const quests = document.querySelectorAll(
-        ".right-interface > .quests .quest"
-      );
-
-      quests.forEach((quest) => {
-        const amounts = quest.querySelectorAll(".amount");
-        const progress2 = quest.querySelector(".progress2");
-
-        if (progress2 && !progress2.dataset.formatted) {
-          const [progressAmt, progressMax] = progress2.innerText.split("/");
-          progress2.innerText = `${parseInt(
-            progressAmt
-          ).toLocaleString()}/${parseInt(progressMax).toLocaleString()}`;
-          progress2.dataset.formatted = true;
-        }
-
-        amounts.forEach((amount) => {
-          if (!amount.dataset.formatted) {
-            const formatted = parseInt(
-              amount.innerText.split(" ")[0]
-            ).toLocaleString();
-            amount.innerHTML = amount.innerHTML.replace(
-              amount.innerText.split(" ")[0],
-              formatted
-            );
-            amount.dataset.formatted = true;
-          }
-        });
-      });
-    };
-
-    const interval = setInterval(() => {
-      const moneys = document.querySelectorAll(".moneys > .card-cont");
-      const expValues = document.querySelector(".exp-values");
-      const quests = document.querySelectorAll(
-        ".right-interface > .quests .quest"
-      );
-      const questsTabs = document.querySelector(
-        ".right-interface > .quests .tabs"
-      );
-
-      if (moneys.length && expValues && quests.length && questsTabs) {
-        clearInterval(interval);
-        moneys.forEach(formatMoney);
-        formatExpValues(expValues);
-        formatQuests();
-
-        questsTabs.addEventListener("click", formatQuests);
-      }
-    }, 100);
   };
 
   const handleServers = async () => {
@@ -894,28 +824,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.querySelector(".kill-death .kd").remove();
       }
     }, 1000);
-  };
-
-  const handleMarket = () => {
-    const interval = setInterval(() => {
-      if (!window.location.href === `${base_url}hub/market`) {
-        clearInterval(interval);
-        return;
-      }
-
-      const subjects = document.querySelectorAll(".subject");
-
-      subjects.forEach((subject) => {
-        const count = subject.querySelector(".count");
-        if (count && !count.dataset.formatted) {
-          count.innerHTML = count.innerHTML.replace(
-            count.innerText,
-            parseInt(count.innerText).toLocaleString()
-          );
-          count.dataset.formatted = true;
-        }
-      });
-    }, 250);
   };
 
   const handleFriends = () => {
