@@ -29,7 +29,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 18.x
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
@@ -40,31 +40,28 @@ jobs:
       - name: Extract Version and Name from package.json
         id: meta
         run: |
-          version=$(node -p 'require("./package.json").version')
-          name=$(node -p 'require("./package.json").name')
-          echo "version=$version" >> "$GITHUB_OUTPUT"
-          echo "name=$name" >> "$GITHUB_OUTPUT"
+          echo "version=$(node -p 'require(\"./package.json\").version')" >> "$GITHUB_ENV"
+          echo "name=$(node -p 'require(\"./package.json\").name')" >> "$GITHUB_ENV"
 
-      - name: Create Draft GitHub Release
-        id: create_release
+      - name: Create Draft GitHub Release (only on ubuntu-latest)
+        if: matrix.os == 'ubuntu-latest'
         uses: softprops/action-gh-release@v2.0.6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.meta.outputs.version }}
-          name: Release ${{ steps.meta.outputs.version }}
+          tag_name: v${{ env.version }}
+          name: Release ${{ env.version }}
           draft: true
           prerelease: false
-          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Electron App (${{ matrix.arch }})
         run: npm run build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload Artifacts to Release
         uses: softprops/action-gh-release@v2.0.6
         with:
-          files: |
-            dist/**/*
+          files: dist/**/* 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
