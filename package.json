@@ -1,6 +1,6 @@
 {
   "name": "bitter-juice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Electron client for Kirka.io, forked from irrvlo/juice-client (EOL)",
   "main": "src/main.js",
   "scripts": {
