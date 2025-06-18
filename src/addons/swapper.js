@@ -17,7 +17,7 @@ const initResourceSwapper = () => {
     "swapper"
   );
   const assetsFolder = path.join(SWAP_FOLDER, "assets");
-  const folders = ["css", "media", "img", "glb", "js"];
+  const folders = ["css", "media", "img", "js"];
   let folder_regex_generator = "JuiceClient[\\\\/]swapper[\\\\/]assets[\\\\/](";
   folder_regex_generator += folders.join("|");
   folder_regex_generator += ")[\\\\/][^\\\\/]+\\.[^.]+$";
@@ -54,7 +54,7 @@ const initResourceSwapper = () => {
       if (fs.statSync(filePath).isDirectory()) allFilesSync(filePath);
       else {
         const useAssets = folder_regex.test(filePath);
-        if (!useAssets) return;
+        if (!useAssets || filePath.toLowerCase().endsWith(".glb")) return;
 
         proxyUrls.forEach((proxy) => {
           const kirk = `*://${proxy}${filePath.replace(SWAP_FOLDER, "").replace(/\\/g, "/")}*`;
