@@ -9,22 +9,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateStatus = (status) => (statusElement.textContent = status);
 
-  ipcRenderer.send("check-for-updates");
-  updateStatus("Checking for updates...");
-
-  ipcRenderer.on("update-available", () =>
-    updateStatus("Update available! Downloading...")
-  );
-  ipcRenderer.on("update-not-available", () =>
-    updateStatus("No updates available. Launching...")
-  );
-
-  ipcRenderer.on("update-downloaded", () => {
-    updateStatus("Update downloaded! Installing...");
-    ipcRenderer.send("quit-and-install");
-  });
-
-  ipcRenderer.on("download-progress", (_, progress) =>
-    updateStatus(`Downloading update: ${Math.round(progress.percent)}%`)
-  );
+  updateStatus("Hello there :)")
 });
