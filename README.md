@@ -1,13 +1,16 @@
 # Juice Client
 
-A light Electron client for Kirka.io. Join our [discord](https://discord.gg/FjzAAdSjng) for support and update notifications.
+A light Electron client for Kirka.io.
+
+Please note this client (currently) is not known as safe. If you think i put a rat in here, good job, you have a brain. Check through the code.
 
 # Download
 
-- [Website](https://juice.irrvlo.xyz)
-- [Releases](https://github.com/irrvlo/juice-client/releases)
+- [Releases](https://github.com/i-am-called-glitchy/bitter-juice/releases)
 
 Windows, Linux and MacOS releases are available.
+
+
 # What features does this have?
 
 - Uncapped FPS
@@ -52,15 +55,17 @@ Windows, Linux and MacOS releases are available.
 | F12 & Ctrl + Shift + I | Open DevTools |
 
 ## Known bugs:
-- Pulp manifests under rare conditions. 
+- Pulp manifests under rare conditions.
+<!-- i am going insane trying to find the pulp --!>
 
 # Is it safe?
 
-Juice Client is 100% completely safe to use. Releases are built directly with the source code using Github Workflows (Thanks Error!). If you face any issues, join our [discord](https://discord.gg/FjzAAdSjng) to report bugs.
+Juice Client is 100% completely safe to use. Releases are built directly with the source code using Github Workflows (Thanks Error!). If you face any issues, use the [issue tracker](https://github.com/irrvlo/juice-client/issues) to report bugs.
 
 ## Credits
 
-- irrvlo
+- i\_am\_called\_glitchy, maintainer for now
+- irrvlo, former head maintainer
 - CarrySheriff for Chest/Pack opener, Map Images Repo, Market Names, and Custom List Price
 - AwesomeSam for a basic Resource Swapper
 - Error430 for optimizations

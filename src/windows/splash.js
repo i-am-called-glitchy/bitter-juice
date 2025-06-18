@@ -2,6 +2,13 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const { initGame } = require("./game");
 const path = require("path");
+const Store = require("electron-store");
+const store = new Store();
+if (!store.has("settings")) {
+  store.set("settings", default_settings);
+}
+
+const settings = store.get("settings");
 
 autoUpdater.autoDownload = true;
 
@@ -14,6 +21,10 @@ autoUpdater.setFeedURL({
 let splashWindow;
 
 const createWindow = () => {
+  if (settings.skip_splash){
+    initGame();
+    return;
+  }
   splashWindow = new BrowserWindow({
     icon: path.join(__dirname, "../assets/img/icon.png"),
     width: 600,

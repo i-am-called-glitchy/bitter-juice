@@ -8,6 +8,7 @@
     "hide_interface": false,
     "lobby_keybind_reminder": true,
     "skip_loading": false,
+    "skip_splash": false,
     "interface_opacity": "100",
     "interface_bounds": "2",
     "kd_indicator": false,
