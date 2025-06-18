@@ -1,5 +1,5 @@
 {
-  "name": "Bitter juice",
+  "name": "bitter-juice",
   "version": "1.0.0",
   "description": "Electron client for Kirka.io, forked from irrvlo/juice-client (EOL)",
   "main": "src/main.js",
