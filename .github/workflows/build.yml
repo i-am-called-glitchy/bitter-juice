@@ -44,12 +44,6 @@ jobs:
           name=$(node -p 'require("./package.json").name')
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "name=$name" >> "$GITHUB_OUTPUT"
-      - name: Create Git Tag
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag v${{ steps.meta.outputs.version }}
-          git push origin v${{ steps.meta.outputs.version }}
 
       - name: Create Draft GitHub Release
         id: create_release
